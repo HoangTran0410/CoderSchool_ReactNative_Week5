@@ -1,7 +1,10 @@
-import { createDrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
 
-import TopHeadlinesScreen from '../screens/TopHeadlinesScreen';
+import TopHeadlines from '../screens/TopHeadlines';
 
+const TopHeadlinesScreen = createStackNavigator({
+  Home: TopHeadlines,
+});
 
 const tabNavigator = createDrawerNavigator({
   TopHeadlinesScreen,

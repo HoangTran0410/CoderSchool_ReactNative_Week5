@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, ActivityIndicator, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ActivityIndicator, TouchableWithoutFeedback, TouchableOpacity, Linking } from 'react-native';
 import { Image, Button } from 'react-native-elements';
 
 import { daysBetween } from '../utils/api';
@@ -33,7 +33,8 @@ export default class Feed extends Component {
 	}
 
 	onPressReadMore = () => {
-		alert(this.props.data.url)
+		// alert(this.props.data.url)
+		Linking.openURL(this.props.data.url);
 	}
 
 	render() {

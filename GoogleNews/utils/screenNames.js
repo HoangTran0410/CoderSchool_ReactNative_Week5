@@ -1,7 +1,7 @@
-const MainScreenName = "MainScreen";
-const HomeScreenName = "HomeScreen";
+const TopHeadlines = "TopHeadlinesScreen";
+const SportsHeadLines = "SportsHeadLinesScreen";
 
 export {
-	MainScreenName,
-	HomeScreenName
+	TopHeadlines,
+	SportsHeadLines
 }
