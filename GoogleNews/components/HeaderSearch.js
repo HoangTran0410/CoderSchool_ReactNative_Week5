@@ -7,13 +7,19 @@ import { Icon, Text, Button, Overlay, Input } from 'react-native-elements';
 export default class Header extends Component {
 
 	state = {
-		modalVisible: false
+		modalVisible: false,
+		searchValue: ''
 	}
 
 	setModalVisible = (value) => {
 		this.setState({
 			modalVisible: value,
 		})
+	}
+
+	onPressSearchBtn = () => {
+		this.props.onPressSearchBtn(this.state.searchValue);
+		this.setModalVisible(false);
 	}
 
 	renderOverlay = () => {
@@ -24,7 +30,8 @@ export default class Header extends Component {
 				onBackdropPress={() => this.setModalVisible(false)}
 			>
 				<Input
-					onChangeText={(text) => { this.text = text; }}
+					onChangeText={(text) => { this.setState({ searchValue: text }) }}
+					value={this.state.searchValue}
 					placeholder='Search here...'
 					inputStyle={{
 						padding: 10,
@@ -39,7 +46,7 @@ export default class Header extends Component {
 				/>
 				<Button
 					title="Search"
-					onPress={() => { this.props.onPressSearchBtn(this.text) }}
+					onPress={this.onPressSearchBtn}
 				/>
 			</Overlay>
 		)

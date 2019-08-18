@@ -24,7 +24,7 @@ let routeConfig = {
 }
 
 let drawerNavigatorConfig = {
-  initialRouteName: "Top"
+  initialRouteName: "Search"
 }
 
 const tabNavigator = createDrawerNavigator(routeConfig, drawerNavigatorConfig);

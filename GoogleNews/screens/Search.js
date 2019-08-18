@@ -23,16 +23,28 @@ export default class Search extends Component {
   }
 
   onPressSearchBtn = (searchValue) => {
-    alert(searchValue)
-    this.setState({ qInTitle: searchValue })
+    this.setState({
+      qInTitle: searchValue
+    },
+      () => {
+        this.newsFeed.componentDidMount();
+      }
+    )
   }
 
   render() {
-    const { qInTitle } = this.state;
     return (
       <View style={{ flex: 1 }}>
         <HeaderSearch {...this.props} title="Search" onPressSearchBtn={this.onPressSearchBtn} />
-        <NewsFeed config={{ apiType: 'everything', qInTitle, sortBy: 'popularity' }} {...this.props} />
+        <NewsFeed
+          ref={(ref) => { this.newsFeed = ref }}
+          config={{
+            qInTitle: this.state.qInTitle,
+            apiType: 'everything',
+            sortBy: 'popularity'
+          }}
+          {...this.props}
+        />
       </View>
     )
   }
