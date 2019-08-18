@@ -1,6 +1,8 @@
 const apiAll = 'https://newsapi.org/v2/everything';
 const apiHeadlines = 'https://newsapi.org//v2/top-headlines';
-const apiKey = 'a3c853ae78b64d9d8a5e7ab38447e232'; //6eec2f7fe6cd4c40a3fef8f33f5778fe
+const apiKey = '6eec2f7fe6cd4c40a3fef8f33f5778fe'; 
+//6eec2f7fe6cd4c40a3fef8f33f5778fe
+// a3c853ae78b64d9d8a5e7ab38447e232
 
 const Parameters = {
 	countries: ['ae ', 'ar ', 'at ', 'au ', 'be ', 'bg ', 'br ', 'ca ', 'ch ', 'cn ', 'co ', 'cu ', 'cz ', 'de ', 'eg ', 'fr ', 'gb ', 'gr ', 'hk ', 'hu ', 'id ', 'ie ', 'il ', 'in ', 'it ', 'jp ', 'kr ', 'lt ', 'lv ', 'ma ', 'mx ', 'my ', 'ng ', 'nl ', 'no ', 'nz ', 'ph ', 'pl ', 'pt ', 'ro ', 'rs ', 'ru ', 'sa ', 'se ', 'sg ', 'si ', 'sk ', 'th ', 'tr ', 'tw ', 'ua ', 'us ', 've ', 'za'],
