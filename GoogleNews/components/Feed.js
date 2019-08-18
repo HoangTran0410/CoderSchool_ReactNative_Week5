@@ -79,8 +79,9 @@ const styles = StyleSheet.create({
 		flex: 100,
 		width: '100%',
 		padding: 5,
+		paddingBottom: 20,
 		borderBottomColor: '#ddd',
-		borderBottomWidth: 1,
+		borderBottomWidth: 5,
 	},
 	contentsContainer: {
 		// paddingVertical: 10,

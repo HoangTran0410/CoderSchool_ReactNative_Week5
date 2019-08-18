@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 
 import Constants from 'expo-constants';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Icon, Text } from 'react-native-elements';
 
 export default class Header extends Component {
@@ -15,7 +15,7 @@ export default class Header extends Component {
         alignItems: 'center',
       }}>
 
-        <TouchableHighlight
+        <TouchableOpacity
           style={{
             padding: 15
           }}
@@ -28,7 +28,7 @@ export default class Header extends Component {
             name="bars"
             type="font-awesome"
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
 
         <Text h4> {this.props.title} </Text>
 
