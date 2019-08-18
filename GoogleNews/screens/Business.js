@@ -22,7 +22,7 @@ export default class Business extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header {...this.props} title="Business" />
-        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'business' }} />
+        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'business' }} {...this.props} />
       </View>
     )
   }

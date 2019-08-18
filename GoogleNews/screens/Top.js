@@ -22,7 +22,7 @@ export default class Top extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header {...this.props} title="Top Headlines" />
-        <NewsFeed config={{ apiType: 'top-headlines', country: 'us' }} />
+        <NewsFeed config={{ apiType: 'top-headlines', country: 'us' }} {...this.props} />
       </View>
     )
   }

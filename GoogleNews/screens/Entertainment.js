@@ -22,7 +22,7 @@ export default class Entertainment extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header {...this.props} title="Entertainment" />
-        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'entertainment' }} />
+        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'entertainment' }} {...this.props} />
       </View>
     )
   }

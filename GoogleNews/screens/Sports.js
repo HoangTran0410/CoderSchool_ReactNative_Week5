@@ -22,7 +22,7 @@ export default class Sports extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header {...this.props} title="Sports" />
-        <NewsFeed config={{ apiType: 'top-headlines', category: 'sports', country: 'us' }} />
+        <NewsFeed config={{ apiType: 'top-headlines', category: 'sports', country: 'us' }} {...this.props} />
       </View>
     )
   }

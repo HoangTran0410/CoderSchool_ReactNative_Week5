@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import { Button, Icon, Text } from 'react-native-elements';
 
-import { getNews, Parameters } from '../utils/api';
+import { getNews } from '../utils/api';
 import Feed from './Feed';
 
 export default class NewsFeed extends Component {
@@ -11,9 +11,10 @@ export default class NewsFeed extends Component {
 		page: 1,
 		articles: [],
 		isLoadingMore: false,
+		isRefreshing: false,
 	}
 
-	async componentDidMount() {
+	componentDidMount = async () => {
 		const { config } = this.props;
 		const data = await getNews({ ...config });
 		console.log(data);
@@ -24,6 +25,10 @@ export default class NewsFeed extends Component {
 
 	scrollToTop = () => {
 		this.flatListRef.scrollToIndex({ animated: true, index: 0 });
+	}
+
+	scrollToDown = () => {
+		this.flatListRef.scrollToEnd({ animated: true });
 	}
 
 	getMoreFeed = async () => {
@@ -51,12 +56,20 @@ export default class NewsFeed extends Component {
 				<FlatList
 					ref={(ref) => { this.flatListRef = ref; }}
 					style={styles.flatList}
+
 					data={this.state.articles}
 					extraData={this.state.articles}
 					keyExtractor={(item, index) => index + ''}
 					renderItem={({ item, index }) => {
-						return <Feed data={item} />
+						return <Feed data={item} {...this.props} />
 					}}
+
+					refreshControl={
+						<RefreshControl
+							refreshing={this.state.isRefreshing}
+							onRefresh={this.componentDidMount}
+						/>
+					}
 					onEndReached={() => {
 						this.getMoreFeed();
 					}}
@@ -64,25 +77,42 @@ export default class NewsFeed extends Component {
 						<ActivityIndicator size="large" />
 					}
 					ListHeaderComponent={
-						<Text style={styles.newsCount}>{'Loaded ' + this.state.articles.length + ' news.'}</Text>
+						<View>
+							<Text style={styles.newsCount}>{'Loaded ' + this.state.articles.length + ' news.'}</Text>
+							<Text style={styles.pullDown}>{'Pull down to refresh'}</Text>
+						</View>
 					}
 					ListFooterComponent={
 						this.state.isLoadingMore &&
 						<ActivityIndicator size="large" />
 					}
 				/>
-				<Button
-					buttonStyle={styles.btnScrollToTop}
-					// type="clear"
-					onPress={this.scrollToTop}
-					icon={
-						<Icon
-							name='chevron-up'
-							type='font-awesome'
-							color='white'
-						/>
-					}
-				/>
+				<View style={styles.containerBtn}>
+					<Button
+						buttonStyle={styles.btnScrollToTop}
+						// type="clear"
+						onPress={this.scrollToTop}
+						icon={
+							<Icon
+								name='chevron-up'
+								type='font-awesome'
+								color='white'
+							/>
+						}
+					/>
+					<Button
+						buttonStyle={styles.btnScrollToTop}
+						// type="clear"
+						onPress={this.scrollToDown}
+						icon={
+							<Icon
+								name='chevron-down'
+								type='font-awesome'
+								color='white'
+							/>
+						}
+					/>
+				</View>
 			</View>
 		)
 	}
@@ -98,12 +128,17 @@ const styles = StyleSheet.create({
 	flatList: {
 		width: '100%',
 	},
-	btnScrollToTop: {
+	containerBtn: {
+		flexDirection: 'row',
 		position: 'absolute',
 		bottom: 10,
+		right: 0,
+	},
+	btnScrollToTop: {
 		// padding: 15,
 		width: 50,
 		height: 50,
+		margin: 5,
 		borderRadius: 25,
 		alignSelf: 'center',
 		backgroundColor: '#007acc99'
@@ -113,5 +148,10 @@ const styles = StyleSheet.create({
 		color: '#555',
 		fontSize: 20,
 		fontWeight: 'bold',
+	},
+	pullDown: {
+		alignSelf: 'center',
+		fontSize: 12,
+		color: '#888'
 	}
 });

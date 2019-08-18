@@ -34,7 +34,9 @@ export default class Feed extends Component {
 
 	onPressReadMore = () => {
 		// alert(this.props.data.url)
-		Linking.openURL(this.props.data.url);
+		// Linking.openURL(this.props.data.url);
+		const { navigation, data } = this.props;
+		navigation.navigate("WebViewNews", { url: data.url })
 	}
 
 	render() {
@@ -52,8 +54,8 @@ export default class Feed extends Component {
 
 				<TouchableOpacity onPress={this.onPressFeed} >
 					{/* <View style={styles.contentsContainer}> */}
-						<Text style={styles.txtSource}>{source.name + ' - Author: ' + author}</Text>
-						<Text style={styles.txtTitle}>{title}</Text>
+					<Text style={styles.txtSource}>{source.name + ' - Author: ' + author}</Text>
+					<Text style={styles.txtTitle}>{title}</Text>
 					{/* </View> */}
 				</TouchableOpacity>
 

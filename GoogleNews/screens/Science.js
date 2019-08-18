@@ -22,7 +22,7 @@ export default class Science extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header {...this.props} title="Science" />
-        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'science' }} />
+        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'science' }} {...this.props} />
       </View>
     )
   }

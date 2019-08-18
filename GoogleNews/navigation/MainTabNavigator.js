@@ -8,6 +8,8 @@ import Science from '../screens/Science';
 import Business from '../screens/Business';
 import Entertainment from "../screens/Entertainment";
 
+import WebViewNews from '../screens/WebViewNews';
+
 let routeConfig = {
   "Top": { screen: Top },
   "Sports": { screen: Sports },
@@ -16,6 +18,7 @@ let routeConfig = {
   "Science": { screen: Science },
   "Business": { screen: Business },
   "Entertainment": { screen: Entertainment },
+  "WebViewNews": { screen: WebViewNews },
 }
 
 let drawerNavigatorConfig = {

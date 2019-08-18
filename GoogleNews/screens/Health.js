@@ -22,7 +22,7 @@ export default class Health extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header {...this.props} title="Health" />
-        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'health' }} />
+        <NewsFeed config={{ apiType: 'top-headlines', country: 'us', category: 'health' }} {...this.props} />
       </View>
     )
   }
