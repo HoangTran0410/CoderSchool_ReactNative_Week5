@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native';
-import { Button, Icon } from 'react-native-elements';
+import { StyleSheet, View, FlatList, ActivityIndicator } from 'react-native';
+import { Button, Icon, Text } from 'react-native-elements';
 
 import { getNews, Parameters } from '../utils/api';
 import Feed from './Feed';
@@ -30,11 +30,14 @@ export default class NewsFeed extends Component {
 		})
 
 		const { page, articles } = this.state;
-		const data = await getNews({ q: 'love', category: 'technology', page: page + 1 }, 'all');
+		const data = await getNews({ q: 'love', page: page + 1 }, 'all');
+		const newArticles = data.articles || [];
 
-		await this.setState({
+		console.log(data);
+
+		this.setState({
 			page: page + 1,
-			articles: [...articles, ...data.articles],
+			articles: [...articles, ...newArticles],
 			isLoadingMore: false
 		})
 	}
@@ -56,6 +59,9 @@ export default class NewsFeed extends Component {
 					}}
 					ListEmptyComponent={
 						<ActivityIndicator size="large" />
+					}
+					ListHeaderComponent={
+						<Text style={styles.newsCount}>{this.state.articles.length + ' news.'}</Text>
 					}
 					ListFooterComponent={
 						this.state.isLoadingMore &&
@@ -97,5 +103,11 @@ const styles = StyleSheet.create({
 		height: 50,
 		borderRadius: 25,
 		alignSelf: 'center',
+	},
+	newsCount: {
+		alignSelf: 'center',
+		color: '#555',
+		fontSize: 20,
+		fontWeight: 'bold',
 	}
 });
