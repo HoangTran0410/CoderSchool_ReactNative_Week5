@@ -1,6 +1,6 @@
 const apiAll = 'https://newsapi.org/v2/everything';
 const apiHeadlines = 'https://newsapi.org//v2/top-headlines';
-const apiKey = '6eec2f7fe6cd4c40a3fef8f33f5778fe'; 
+const apiKey = '6eec2f7fe6cd4c40a3fef8f33f5778fe';
 //6eec2f7fe6cd4c40a3fef8f33f5778fe
 // a3c853ae78b64d9d8a5e7ab38447e232
 
@@ -13,16 +13,21 @@ const Parameters = {
 
 // const parameters = ['q', 'from', 'to', 'country', 'sortBy', 'sources', 'domains', 'category']
 
-const getNews = async (filters = { country: 'us' }, apiType = 'headlines') => {
+const getNews = async (filters = {}) => {
+
+	const {
+		apiType = 'everything'
+	} = filters;
 
 	// get host url
-	let apiLink = (apiType == 'headlines' ? apiHeadlines : apiAll);
+	let apiLink = (apiType == 'top-headlines' ? apiHeadlines : apiAll);
 
 	// add parameters to url
 	let isFirstParameter = true;
 	filters.apiKey = apiKey;
 
 	for (let f in filters) {
+		if (f == 'apiType') continue;
 		if (isFirstParameter) {
 			apiLink += `?${f}=${filters[f]}`;
 			isFirstParameter = false;

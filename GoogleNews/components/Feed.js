@@ -40,6 +40,7 @@ export default class Feed extends Component {
 		const { source, author, title, description, url, urlToImage, publishedAt, content } = this.props.data;
 		return (
 			<View style={styles.container}>
+
 				<TouchableWithoutFeedback onPress={this.onPressFeed} style={styles.imgContainer}>
 					<Image
 						style={styles.img}
@@ -47,21 +48,24 @@ export default class Feed extends Component {
 						PlaceholderContent={<ActivityIndicator />}
 					/>
 				</TouchableWithoutFeedback>
+
 				<TouchableOpacity onPress={this.onPressFeed} >
-					<View style={styles.contentsContainer}>
+					{/* <View style={styles.contentsContainer}> */}
 						<Text style={styles.txtSource}>{source.name + ' - Author: ' + author}</Text>
 						<Text style={styles.txtTitle}>{title}</Text>
-						{
-							this.state.isViewingContent &&
-							<ReadMore
-								description={description}
-								content={content}
-								onPress={this.onPressReadMore}
-							/>
-						}
-						<Text style={styles.txtTime}>{'🕑 ' + daysBetween(new Date(publishedAt), new Date())}</Text>
-					</View>
+					{/* </View> */}
 				</TouchableOpacity>
+
+				{
+					this.state.isViewingContent &&
+					<ReadMore
+						description={description}
+						content={content}
+						onPress={this.onPressReadMore}
+					/>
+				}
+				<Text style={styles.txtTime}>{'🕑 ' + daysBetween(new Date(publishedAt), new Date())}</Text>
+
 			</View>
 		)
 	}
@@ -84,23 +88,27 @@ const styles = StyleSheet.create({
 	txtSource: {
 		fontSize: 12,
 		color: '#555',
+		padding: 5
 	},
 	txtTitle: {
 		fontSize: 19,
 		fontWeight: 'bold',
+		padding: 5
 	},
 	txtTime: {
 		fontSize: 12,
 		color: '#555',
 		paddingVertical: 5,
+		paddingHorizontal: 10,
 	},
 	txtContent: {
 		fontSize: 14,
 		color: '#333',
-		padding: 5
+		padding: 10,
 	},
 	txtDescription: {
 		fontSize: 15,
+		padding: 5,
 	},
 	imgContainer: {
 		// padding: 5,

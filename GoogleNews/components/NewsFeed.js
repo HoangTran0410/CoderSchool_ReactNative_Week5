@@ -14,9 +14,11 @@ export default class NewsFeed extends Component {
 	}
 
 	async componentDidMount() {
-		const data = await getNews({ q: 'love' }, 'all');
+		const { config } = this.props;
+		const data = await getNews({ ...config });
+		console.log(data);
 		this.setState({
-			articles: data.articles
+			articles: data.articles || [],
 		});
 	}
 
@@ -30,7 +32,8 @@ export default class NewsFeed extends Component {
 		})
 
 		const { page, articles } = this.state;
-		const data = await getNews({ q: 'love', page: page + 1 }, 'all');
+		const { config } = this.props;
+		const data = await getNews({ page: page + 1, ...config });
 		const newArticles = data.articles || [];
 
 		console.log(data);
@@ -61,7 +64,7 @@ export default class NewsFeed extends Component {
 						<ActivityIndicator size="large" />
 					}
 					ListHeaderComponent={
-						<Text style={styles.newsCount}>{this.state.articles.length + ' news.'}</Text>
+						<Text style={styles.newsCount}>{'Loaded ' + this.state.articles.length + ' news.'}</Text>
 					}
 					ListFooterComponent={
 						this.state.isLoadingMore &&
@@ -103,6 +106,7 @@ const styles = StyleSheet.create({
 		height: 50,
 		borderRadius: 25,
 		alignSelf: 'center',
+		backgroundColor: '#007acc99'
 	},
 	newsCount: {
 		alignSelf: 'center',
