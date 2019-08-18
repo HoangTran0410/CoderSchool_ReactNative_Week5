@@ -27,9 +27,9 @@ export default class NewsFeed extends Component {
 		this.flatListRef.scrollToIndex({ animated: true, index: 0 });
 	}
 
-	scrollToDown = () => {
-		this.flatListRef.scrollToEnd({ animated: true });
-	}
+	// scrollToDown = () => {
+	// 	this.flatListRef.scrollToEnd({ animated: true });
+	// }
 
 	getMoreFeed = async () => {
 		await this.setState({
@@ -100,7 +100,7 @@ export default class NewsFeed extends Component {
 							/>
 						}
 					/>
-					<Button
+					{/* <Button
 						buttonStyle={styles.btnScrollToTop}
 						// type="clear"
 						onPress={this.scrollToDown}
@@ -111,7 +111,7 @@ export default class NewsFeed extends Component {
 								color='white'
 							/>
 						}
-					/>
+					/> */}
 				</View>
 			</View>
 		)
