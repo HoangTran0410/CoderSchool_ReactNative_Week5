@@ -5,112 +5,112 @@ import { Image, Button } from 'react-native-elements';
 import { daysBetween } from '../utils/api';
 
 class ReadMore extends Component {
-    render() {
-        const { content, description, onPress } = this.props;
-        return (
-            <View>
-                <Text style={styles.txtDescription}>{description}</Text>
-                <Text style={styles.txtContent}>{content}</Text>
-                <Button
-                    title="Read more"
-                    onPress={onPress}
-                />
-            </View>
-        )
-    }
+	render() {
+		const { content, description, onPress } = this.props;
+		return (
+			<View>
+				<Text style={styles.txtDescription}>{description}</Text>
+				<Text style={styles.txtContent}>{content}</Text>
+				<Button
+					title="Read more"
+					onPress={onPress}
+				/>
+			</View>
+		)
+	}
 }
 
 export default class Feed extends Component {
 
-    state = {
-        isViewingContent: false
-    }
+	state = {
+		isViewingContent: false
+	}
 
-    onPressFeed = () => {
-        this.setState({
-            isViewingContent: !this.state.isViewingContent
-        })
-    }
+	onPressFeed = () => {
+		this.setState({
+			isViewingContent: !this.state.isViewingContent
+		})
+	}
 
-    onPressReadMore = () => {
-        alert(this.props.data.url)
-    }
+	onPressReadMore = () => {
+		alert(this.props.data.url)
+	}
 
-    render() {
-        const { source, author, title, description, url, urlToImage, publishedAt, content } = this.props.data;
-        return (
-            <View style={styles.container}>
-                <TouchableWithoutFeedback onPress={this.onPressFeed} style={styles.imgContainer}>
-                    <Image
-                        style={styles.img}
-                        source={{ uri: urlToImage }}
-                        PlaceholderContent={<ActivityIndicator />}
-                    />
-                </TouchableWithoutFeedback>
-                <TouchableOpacity onPress={this.onPressFeed} >
-                    <View style={styles.contentsContainer}>
-                        <Text style={styles.txtSource}>{source.name + ' - Author: ' + author}</Text>
-                        <Text style={styles.txtTitle}>{title}</Text>
-                        {
-                            this.state.isViewingContent &&
-                            <ReadMore
-                                description={description}
-                                content={content}
-                                onPress={this.onPressReadMore}
-                            />
-                        }
-                        <Text style={styles.txtTime}>{'🕑 ' + daysBetween(new Date(publishedAt), new Date())}</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        )
-    }
+	render() {
+		const { source, author, title, description, url, urlToImage, publishedAt, content } = this.props.data;
+		return (
+			<View style={styles.container}>
+				<TouchableWithoutFeedback onPress={this.onPressFeed} style={styles.imgContainer}>
+					<Image
+						style={styles.img}
+						source={{ uri: urlToImage }}
+						PlaceholderContent={<ActivityIndicator />}
+					/>
+				</TouchableWithoutFeedback>
+				<TouchableOpacity onPress={this.onPressFeed} >
+					<View style={styles.contentsContainer}>
+						<Text style={styles.txtSource}>{source.name + ' - Author: ' + author}</Text>
+						<Text style={styles.txtTitle}>{title}</Text>
+						{
+							this.state.isViewingContent &&
+							<ReadMore
+								description={description}
+								content={content}
+								onPress={this.onPressReadMore}
+							/>
+						}
+						<Text style={styles.txtTime}>{'🕑 ' + daysBetween(new Date(publishedAt), new Date())}</Text>
+					</View>
+				</TouchableOpacity>
+			</View>
+		)
+	}
 }
 
 const styles = StyleSheet.create({
-    container: {
-        // flexDirection: 'row',
-        // justifyContent: 'space-between',
-        flex: 100,
-        width: '100%',
-        padding: 5,
-        borderBottomColor: '#ddd',
-        borderBottomWidth: 1,
-    },
-    contentsContainer: {
-        // paddingVertical: 10,
-        paddingHorizontal: 10,
-    },
-    txtSource: {
-        fontSize: 12,
-        color: '#555',
-    },
-    txtTitle: {
-        fontSize: 19,
-        fontWeight: 'bold',
-    },
-    txtTime: {
-        fontSize: 12,
-        color: '#555',
-        paddingVertical: 5,
-    },
-    txtContent: {
-        fontSize: 14,
-        color: '#333',
-        padding: 5
-    },
-    txtDescription: {
-        fontSize: 15,
-    },
-    imgContainer: {
-        // padding: 5,
-    },
-    img: {
-        resizeMode: 'cover',
-        width: '100%',
-        height: 200,
-        borderRadius: 10,
-        borderColor: '#ddd',
-        borderWidth: 1
-    }
+	container: {
+		// flexDirection: 'row',
+		// justifyContent: 'space-between',
+		flex: 100,
+		width: '100%',
+		padding: 5,
+		borderBottomColor: '#ddd',
+		borderBottomWidth: 1,
+	},
+	contentsContainer: {
+		// paddingVertical: 10,
+		paddingHorizontal: 10,
+	},
+	txtSource: {
+		fontSize: 12,
+		color: '#555',
+	},
+	txtTitle: {
+		fontSize: 19,
+		fontWeight: 'bold',
+	},
+	txtTime: {
+		fontSize: 12,
+		color: '#555',
+		paddingVertical: 5,
+	},
+	txtContent: {
+		fontSize: 14,
+		color: '#333',
+		padding: 5
+	},
+	txtDescription: {
+		fontSize: 15,
+	},
+	imgContainer: {
+		// padding: 5,
+	},
+	img: {
+		resizeMode: 'cover',
+		width: '100%',
+		height: 200,
+		borderRadius: 10,
+		borderColor: '#ddd',
+		borderWidth: 1
+	}
 })
