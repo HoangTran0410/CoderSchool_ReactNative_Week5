@@ -15,12 +15,21 @@ export default class NewsFeed extends Component {
 	}
 
 	componentDidMount = async () => {
-		const { config } = this.props;
-		const data = await getNews({ ...config });
-		console.log(data);
-		this.setState({
-			articles: data.articles || [],
-		});
+		try {
+			const { config } = this.props;
+			const data = await getNews({ ...config });
+
+			if (data.status == 'error') throw new Error(data.message)
+
+			console.log(data);
+
+			this.setState({
+				articles: data.articles || [],
+			});
+
+		} catch (err) {
+			alert('Error: Can not get news. ' + err);
+		}
 	}
 
 	scrollToTop = () => {
@@ -32,22 +41,34 @@ export default class NewsFeed extends Component {
 	// }
 
 	getMoreFeed = async () => {
-		await this.setState({
-			isLoadingMore: true
-		})
+		try {
+			await this.setState({
+				isLoadingMore: true
+			})
 
-		const { page, articles } = this.state;
-		const { config } = this.props;
-		const data = await getNews({ page: page + 1, ...config });
-		const newArticles = data.articles || [];
+			const { page, articles } = this.state;
+			const { config } = this.props;
+			const data = await getNews({ page: page + 1, ...config });
 
-		console.log(data);
+			if (data.status == 'error') throw new Error(data.message)
 
-		this.setState({
-			page: page + 1,
-			articles: [...articles, ...newArticles],
-			isLoadingMore: false
-		})
+			const newArticles = data.articles || [];
+
+			console.log(data);
+
+			await this.setState({
+				page: page + 1,
+				articles: [...articles, ...newArticles],
+			})
+
+		} catch (err) {
+			alert("Error: Can not get more news. " + err);
+
+		} finally {
+			this.setState({
+				isLoadingMore: false
+			})
+		}
 	}
 
 	render() {
