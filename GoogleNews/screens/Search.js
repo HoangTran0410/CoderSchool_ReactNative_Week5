@@ -19,7 +19,7 @@ export default class Search extends Component {
   }
 
   state = {
-    qInTitle: 'react native'
+    qInTitle: 'sơn tùng'
   }
 
   onPressSearchBtn = (searchValue) => {

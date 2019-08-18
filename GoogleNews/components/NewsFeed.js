@@ -20,6 +20,7 @@ export default class NewsFeed extends Component {
 			const data = await getNews({ ...config });
 
 			if (data.status == 'error') throw new Error(data.message)
+			if (!data.articles || data.articles.length == 0) throw new Error('Không có kết quả nào');
 
 			console.log(data);
 

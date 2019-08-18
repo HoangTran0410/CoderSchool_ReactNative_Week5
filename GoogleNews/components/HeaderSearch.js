@@ -29,25 +29,27 @@ export default class Header extends Component {
 				isVisible={this.state.modalVisible}
 				onBackdropPress={() => this.setModalVisible(false)}
 			>
-				<Input
-					onChangeText={(text) => { this.setState({ searchValue: text }) }}
-					value={this.state.searchValue}
-					placeholder='Search here...'
-					inputStyle={{
-						padding: 10,
-					}}
-					leftIcon={
-						<Icon
-							name='search'
-							type='font-awesome'
-							color='gray'
-						/>
-					}
-				/>
-				<Button
-					title="Search"
-					onPress={this.onPressSearchBtn}
-				/>
+				<View>
+					<Input
+						onChangeText={(text) => { this.setState({ searchValue: text }) }}
+						value={this.state.searchValue}
+						placeholder='Search here...'
+						inputStyle={{
+							padding: 10,
+						}}
+						leftIcon={
+							<Icon
+								name='search'
+								type='font-awesome'
+								color='gray'
+							/>
+						}
+					/>
+					<Button
+						title="Search"
+						onPress={this.onPressSearchBtn}
+					/>
+				</View>
 			</Overlay>
 		)
 	}
