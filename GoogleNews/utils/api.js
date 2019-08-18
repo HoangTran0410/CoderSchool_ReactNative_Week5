@@ -1,6 +1,6 @@
 const apiAll = 'https://newsapi.org/v2/everything';
 const apiHeadlines = 'https://newsapi.org//v2/top-headlines';
-const apiKey = '6eec2f7fe6cd4c40a3fef8f33f5778fe';
+const apiKey = 'a3c853ae78b64d9d8a5e7ab38447e232';
 //6eec2f7fe6cd4c40a3fef8f33f5778fe
 // a3c853ae78b64d9d8a5e7ab38447e232
 
