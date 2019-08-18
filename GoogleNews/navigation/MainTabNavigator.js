@@ -1,13 +1,27 @@
-import { createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation';
 
-import TopHeadlines from '../screens/TopHeadlines';
+import Top from '../screens/Top';
+import Sports from '../screens/Sports';
+import Health from '../screens/Health';
+import Technology from '../screens/Technology';
+import Science from '../screens/Science';
+import Business from '../screens/Business';
+import Entertainment from "../screens/Entertainment";
 
-const TopHeadlinesScreen = createStackNavigator({
-  Home: TopHeadlines,
-});
+let routeConfig = {
+  "Top": { screen: Top },
+  "Sports": { screen: Sports },
+  "Health": { screen: Health },
+  "Technology": { screen: Technology },
+  "Science": { screen: Science },
+  "Business": { screen: Business },
+  "Entertainment": { screen: Entertainment },
+}
 
-const tabNavigator = createDrawerNavigator({
-  TopHeadlinesScreen,
-});
+let drawerNavigatorConfig = {
+  initialRouteName: "Top"
+}
+
+const tabNavigator = createDrawerNavigator(routeConfig, drawerNavigatorConfig);
 
 export default tabNavigator;
