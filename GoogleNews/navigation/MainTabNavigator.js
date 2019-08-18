@@ -1,5 +1,6 @@
 import { createDrawerNavigator } from 'react-navigation';
 
+import Search from '../screens/Search';
 import Top from '../screens/Top';
 import Sports from '../screens/Sports';
 import Health from '../screens/Health';
@@ -11,6 +12,7 @@ import Entertainment from "../screens/Entertainment";
 import WebViewNews from '../screens/WebViewNews';
 
 let routeConfig = {
+  "Search": { screen: Search },
   "Top": { screen: Top },
   "Sports": { screen: Sports },
   "Health": { screen: Health },
