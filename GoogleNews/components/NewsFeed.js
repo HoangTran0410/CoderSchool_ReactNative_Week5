@@ -81,7 +81,7 @@ export default class NewsFeed extends Component {
 
 					data={this.state.articles}
 					extraData={this.state.articles}
-					keyExtractor={(item, index) => index + ''}
+					keyExtractor={(item, index) => index}
 					renderItem={({ item, index }) => {
 						return <Feed data={item} {...this.props} />
 					}}
